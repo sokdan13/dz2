@@ -25,35 +25,23 @@ class DependencyVisualizer:
             commit_data.append((commit, parents))
         return commit_data
 
-    def get_files_changed(self, commit):
-        """Получает файлы, измененные в конкретном коммите"""
-        result = os.popen(f'git diff-tree --no-commit-id --name-only -r {commit}').read()
-        return [os.path.abspath(file_path).replace('\\', '\\\\') for file_path in result.strip().splitlines()]
+    def save_puml_file(self, puml_content, puml_file):
+        with open(puml_file, 'w') as f:
+            f.write(puml_content)
 
-    def shorten_commit(self, commit_hash):
-        """Сокращение хеша коммита до 7 символов"""
-        return commit_hash[:7]
+    def visualize_graph(self):
+        commits_with_parents = self.get_commits_with_parents()
+        puml_content = self.generate_puml_content(commits_with_parents)
+        puml_file = os.path.join(self.repository_path, 'dependency_graph.puml')
+        self.save_puml_file(puml_content, puml_file)
 
-    def generate_puml_content(self, commits_with_parents):
-        """Генерация содержимого PUML с учетом слияний и ветвлений"""
-        puml_lines = ['@startuml']
+        # Генерация графа с использованием PlantUML
+        os.system(f'java -jar "{self.visualizer_path}" "{puml_file}" -o "{os.path.dirname(self.output_image_path)}"')
 
-        for commit, parents in commits_with_parents:
-            short_commit = self.shorten_commit(commit)
-            files_changed = self.get_files_changed(commit)
-            files_content = "\\n".join(files_changed)
-            puml_lines.append(f'class Commit_{short_commit} {{')
-            puml_lines.append(f'{files_content}')
-            puml_lines.append('}')
-
-            for parent in parents:
-                short_parent = self.shorten_commit(parent)
-                puml_lines.append(f'Commit_{short_parent} --> Commit_{short_commit}')
-
-        puml_lines.append('@enduml')
-        return "\n".join(puml_lines)
-
+    def run(self):
+        self.visualize_graph()
+        print(f'Граф зависимостей успешно сохранен в {self.output_image_path}')
 
 if __name__ == '__main__':
     visualizer = DependencyVisualizer('config.ini')
-
+    visualizer.run()
