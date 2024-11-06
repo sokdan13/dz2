@@ -25,6 +25,34 @@ class DependencyVisualizer:
             commit_data.append((commit, parents))
         return commit_data
 
+    def get_files_changed(self, commit):
+        """Получает файлы, измененные в конкретном коммите"""
+        result = os.popen(f'git diff-tree --no-commit-id --name-only -r {commit}').read()
+        return [os.path.abspath(file_path).replace('\\', '\\\\') for file_path in result.strip().splitlines()]
+
+    def shorten_commit(self, commit_hash):
+        """Сокращение хеша коммита до 7 символов"""
+        return commit_hash[:7]
+
+    def generate_puml_content(self, commits_with_parents):
+        """Генерация содержимого PUML с учетом слияний и ветвлений"""
+        puml_lines = ['@startuml']
+
+        for commit, parents in commits_with_parents:
+            short_commit = self.shorten_commit(commit)
+            files_changed = self.get_files_changed(commit)
+            files_content = "\\n".join(files_changed)
+            puml_lines.append(f'class Commit_{short_commit} {{')
+            puml_lines.append(f'{files_content}')
+            puml_lines.append('}')
+
+            for parent in parents:
+                short_parent = self.shorten_commit(parent)
+                puml_lines.append(f'Commit_{short_parent} --> Commit_{short_commit}')
+
+        puml_lines.append('@enduml')
+        return "\n".join(puml_lines)
+
     def save_puml_file(self, puml_content, puml_file):
         with open(puml_file, 'w') as f:
             f.write(puml_content)
