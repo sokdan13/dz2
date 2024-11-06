@@ -1,0 +1,78 @@
+@startuml
+class Commit_66f317d {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py\nC:\\Users\\Lenovo\\PycharmProjects\\dz1\\test.py
+}
+Commit_49057ea --> Commit_66f317d
+class Commit_49057ea {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py
+}
+Commit_acbc877 --> Commit_49057ea
+class Commit_acbc877 {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py
+}
+Commit_99a5d0b --> Commit_acbc877
+class Commit_99a5d0b {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\test.py
+}
+Commit_8dd4d23 --> Commit_99a5d0b
+class Commit_8dd4d23 {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py
+}
+Commit_ae4838a --> Commit_8dd4d23
+class Commit_ae4838a {
+
+}
+Commit_aa57190 --> Commit_ae4838a
+Commit_7165948 --> Commit_ae4838a
+class Commit_aa57190 {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py\nC:\\Users\\Lenovo\\PycharmProjects\\dz1\\gs.tar
+}
+Commit_5744efa --> Commit_aa57190
+class Commit_7165948 {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\README.md
+}
+Commit_5744efa --> Commit_7165948
+class Commit_5744efa {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py
+}
+Commit_c8c8978 --> Commit_5744efa
+class Commit_c8c8978 {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py
+}
+Commit_42b1221 --> Commit_c8c8978
+class Commit_42b1221 {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py
+}
+Commit_5f639eb --> Commit_42b1221
+class Commit_5f639eb {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py
+}
+Commit_5d8a655 --> Commit_5f639eb
+class Commit_5d8a655 {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py
+}
+Commit_7a9ef26 --> Commit_5d8a655
+class Commit_7a9ef26 {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\gs.tar
+}
+Commit_cd29851 --> Commit_7a9ef26
+class Commit_cd29851 {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\start.txt
+}
+Commit_90577fd --> Commit_cd29851
+class Commit_90577fd {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py
+}
+Commit_b1e23ca --> Commit_90577fd
+class Commit_b1e23ca {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py
+}
+Commit_dffed67 --> Commit_b1e23ca
+class Commit_dffed67 {
+C:\\Users\\Lenovo\\PycharmProjects\\dz1\\Project.py
+}
+Commit_99443fa --> Commit_dffed67
+class Commit_99443fa {
+
+}
+@enduml
